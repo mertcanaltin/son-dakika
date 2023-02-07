@@ -55,7 +55,7 @@ export default function TimeLine() {
                         </Timeline.Body>
                         <Link href={`https://twitter.com/${data.raw.name}/status/${data.raw.tweet_id}`}>
                             <Button color="gray">
-                                tweet`&apos;` git
+                                tweete git
                             </Button>
                         </Link>
 
