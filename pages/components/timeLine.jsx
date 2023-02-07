@@ -41,7 +41,7 @@ export default function TimeLine() {
     return (
         <Timeline>
             {results.map((data) => (
-                <Timeline.Item>
+                <Timeline.Item key={data.id}>
                     <Timeline.Point icon={Siren} />
                     <Timeline.Content>
                         <Timeline.Time>
