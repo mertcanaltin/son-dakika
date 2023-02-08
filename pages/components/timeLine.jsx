@@ -3,6 +3,7 @@ import { Button } from "flowbite-react"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ErrorPage from 'next/error'
+import { FaGoogle } from 'react-icons/fa';
 
 
 import Siren from "@/pages/svgs/siren";
@@ -33,7 +34,7 @@ export default function TimeLine() {
             });
     }, [count]);
 
-    
+
     if (!results) {
         <ErrorPage statusCode={404} />
     }
@@ -44,20 +45,44 @@ export default function TimeLine() {
                 <Timeline.Item key={data.id}>
                     <Timeline.Point icon={Siren} />
                     <Timeline.Content>
-                        <Timeline.Time>
+                        <Timeline.Time className="text-red-600">
                             Deprem acil !
                         </Timeline.Time>
+
                         <Timeline.Title>
                             {data.raw.channel}
                         </Timeline.Title>
                         <Timeline.Body>
                             {data.raw.full_text}
+
+                            <div className="rounded-md  border-2 p-3 m-5">
+
+                                <div className="text-emerald-600">
+                                    adres : {data.formatted_address}
+                                </div>
+
+                                <div className="mt-5">
+                                    <div className=" grid gap-[5px] grid-cols-2 md:grid-cols-5 ">
+                                        <Link href={`https://www.google.com/maps?saddr=My+Location&daddr=${data.viewport.northeast.lat},${data.viewport.northeast.lng}`} target='_blank'>
+
+                                            <Button color="gray">
+
+                                                Google haritalarda aç
+                                            </Button>
+                                        </Link>
+
+                                        <Link href={`http://maps.apple.com/?ll=${data.viewport.northeast.lat},${data.viewport.northeast.lng}&z=18`} target='_blank'>
+
+                                            <Button color="gray" className="">
+
+                                                Apple haritalarda aç
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
                         </Timeline.Body>
-                        <Link href={`https://twitter.com/${data.raw.name}/status/${data.raw.tweet_id}`}>
-                            <Button color="gray">
-                                tweete git 
-                            </Button>
-                        </Link>
+
 
                     </Timeline.Content>
                 </Timeline.Item>
@@ -65,9 +90,9 @@ export default function TimeLine() {
 
 
             <div className="flex flex-row mx-auto justify-center">
-                <button  onClick={() => {
-                        setCount(count - 1)
-                        onPageChange()
+                <button onClick={() => {
+                    setCount(count - 1)
+                    onPageChange()
                 }} type="button" className="bg-gray-800 text-white rounded-l-md border-r border-gray-100 py-2 hover:bg-red-700 hover:text-white px-3">
                     <div className="flex flex-row align-middle">
                         <svg className="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -77,8 +102,8 @@ export default function TimeLine() {
                     </div>
                 </button>
                 <button onClick={() => {
-                        setCount(count + 1)
-                        onPageChange()
+                    setCount(count + 1)
+                    onPageChange()
                 }} type="button" className="bg-gray-800 text-white rounded-r-md py-2 border-l border-gray-200 hover:bg-red-700 hover:text-white px-3">
                     <div className="flex flex-row align-middle">
                         <span className="mr-2">İleri</span>
