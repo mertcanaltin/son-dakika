@@ -22,7 +22,7 @@ export default function TimeLine() {
 
 
     useEffect(() => {
-        fetch(`https://api.afetharita.com/tweets/locations?format=json&page=${count}`)
+        fetch(`https://api.afetharita.com/feeds/locations?format=json&page=${count}`)
             .then((res) => res.json())
             .then((res) => {
                 setResults(res.results);
@@ -48,7 +48,7 @@ export default function TimeLine() {
                             Deprem acil !
                         </Timeline.Time>
                         <Timeline.Title>
-                            {data.resolution.name_surname}
+                            {data.raw.channel}
                         </Timeline.Title>
                         <Timeline.Body>
                             {data.raw.full_text}
