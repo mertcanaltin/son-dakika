@@ -3,7 +3,7 @@ import { Button } from "flowbite-react"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ErrorPage from 'next/error'
-import { FaGoogle } from 'react-icons/fa';
+import moment from 'moment'
 
 
 import Siren from "@/pages/svgs/siren";
@@ -36,17 +36,19 @@ export default function TimeLine() {
 
 
     if (!results) {
-        <ErrorPage statusCode={404} />
+        return (
+            <ErrorPage statusCode={404} />
+        )
     }
 
     return (
         <Timeline>
-            {results.map((data) => (
+            {results && results.map((data) => (
                 <Timeline.Item key={data.id}>
                     <Timeline.Point icon={Siren} />
                     <Timeline.Content>
                         <Timeline.Time className="text-red-600">
-                            Deprem acil !
+                        {moment(data.raw.timestamp).format('lll')}
                         </Timeline.Time>
 
                         <Timeline.Title>
@@ -85,6 +87,7 @@ export default function TimeLine() {
 
 
                     </Timeline.Content>
+                    
                 </Timeline.Item>
             ))}
 
