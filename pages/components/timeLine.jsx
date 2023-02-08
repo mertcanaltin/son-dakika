@@ -70,7 +70,7 @@ export default function TimeLine() {
                                                 Google haritalarda aç
                                             </Button>
                                         </Link>
-
+                                        
                                         <Link href={`http://maps.apple.com/?ll=${data.viewport.northeast.lat},${data.viewport.northeast.lng}&z=18`} target='_blank'>
 
                                             <Button color="gray" className="">
